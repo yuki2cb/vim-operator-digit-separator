@@ -16,8 +16,8 @@ function! operator#digit_separator#exec(motion_wise)
   let text = s:get_text(a:motion_wise)
 
   " Separate numeric string with a delimiter.
-  let pattern = '\v(\d)((\d{' . digits . '})+(\d)@!)@='
-  let mod_text = substitute(text, pattern, '\=submatch(1).delimiter', 'g')
+  let pattern = '\v(\.\d*)@<!(\d)((\d{' . digits . '})+(\d)@!)@='
+  let mod_text = substitute(text, pattern, '\=submatch(2).delimiter', 'g')
 
   " Paste the text to buffer.
   call s:paste_text(a:motion_wise, mod_text)
